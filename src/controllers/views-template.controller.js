@@ -19,4 +19,22 @@ router.get('/signup', async (req, res) => {
     }
 })
 
+router.get('/profile', async (req, res) => {
+    try {
+    const { first_name,last_name,age,email} = req.session.user
+     res.render ('profile', {
+        user: {
+            first_name,
+            last_name,
+            age,
+            email,
+        },
+        style:'style.css'})   
+    } catch (error) {
+        console.error ('Error:', error.message)
+        res.status(500).json({ error: 'Internal Server Error' })
+    }
+})
+
+
 module.exports = router

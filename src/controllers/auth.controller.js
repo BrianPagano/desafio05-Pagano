@@ -13,10 +13,14 @@ router.post ('/', async (req, res) => {
         if (user.password !== password) {
            return res.status(400).json({ message: 'bad Request' })
         }
+
+        const lowercaseEmail = email.toLowerCase();
+
         req.session.user = {
             first_name: user.first_name,
             last_name: user.last_name,
-            edad: user.edad,
+            email: lowercaseEmail,
+            age: user.age,
         }
         res.json ({status: 'success', message: 'Login Succesfull'})
      } catch (error) {

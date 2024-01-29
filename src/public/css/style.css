@@ -560,3 +560,39 @@ margin: 50px 100px 0px 100px;
     opacity: 0;
   }
 }
+
+/*Estilo para el Profile*/
+
+.cardProfile {
+  width: 300px;
+  height: 330px;
+  border-radius: 2em;
+  padding: 10px;
+  background-color: #191919;
+  margin: auto; 
+  margin-top: 100px;
+  box-shadow: 5px 5px 30px rgb(4, 4, 4),
+                   -5px -5px 30px rgb(57, 57, 57);
+}
+
+.profileimage {
+  background-color: transparent;
+  border: none;
+  margin-top: 20px;
+  border-radius: 5em;
+  width: 100px;
+  height: 100px;
+}
+
+.pfp {
+  border-radius: 35em;
+  fill: white;
+}
+
+.datosProfile {
+  color: white;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  padding: 15px;
+  font-size: 16px;
+  margin-top: 10px;
+}
