@@ -13,7 +13,7 @@ router.get('/', async (req, res) => {
     // Establece el valor predeterminado para limit (10 si no está presente)
     const limitValue = limit ? parseInt(limit) : 10
 
-     const { docs, hasPrevPage, hasNextPage, nextPage, prevPage} = await Products.paginate (
+     const { docs, hasPrevPage, hasNextPage, nextPage, prevPage,totalPages} = await Products.paginate (
             {$and:[ 
                 { status: true},
                 { category: category ? { $eq: category } : { $exists: true } },// filtro por categoria
@@ -28,7 +28,13 @@ router.get('/', async (req, res) => {
 
      const products = docs
      const { user } = req.session
- 
+
+    // Verifica si la página solicitada es mayor que el número total de páginas disponibles
+    if (totalPages && parseInt(page) > totalPages) {
+    // Redirige al usuario a la última página disponible
+    return res.redirect(`/api/products?page=${totalPages}`);
+    }
+
      res.render ('home', { 
         user,
         products,

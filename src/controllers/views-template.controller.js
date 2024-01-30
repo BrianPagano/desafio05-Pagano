@@ -25,7 +25,7 @@ router.get('/profile', async (req, res, next) => {
         res.redirect('login')
     } catch (error) {
         console.error ('Error:', error.message)
-        res.status(500).json({ error: 'Internal Server Error' })
+        res.status(401).json({ error: error })
     }},async (req, res) => {
     try {
         const { user } = req.session
