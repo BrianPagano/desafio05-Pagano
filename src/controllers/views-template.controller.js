@@ -1,4 +1,5 @@
 const { Router } = require('express')
+const authMiddleware = require('../middlewares/private-acces-middleware')
 const router = Router()
 
 router.get('/login', async (req, res) => {
@@ -19,14 +20,7 @@ router.get('/signup', async (req, res) => {
     }
 })
 
-router.get('/profile', async (req, res, next) => {
-    try {
-        if (req.session.user) return next ()
-        res.redirect('login')
-    } catch (error) {
-        console.error ('Error:', error.message)
-        res.status(401).json({ error: error })
-    }},async (req, res) => {
+router.get('/profile', authMiddleware, async (req, res) => {
     try {
         const { user } = req.session
         res.render ('profile', { user , style:'style.css'})   
