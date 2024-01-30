@@ -27,8 +27,10 @@ router.get('/', async (req, res) => {
         )
 
      const products = docs
+     const { user } = req.session
  
      res.render ('home', { 
+        user,
         products,
         hasPrevPage,
         hasNextPage,

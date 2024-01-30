@@ -19,22 +19,21 @@ router.get('/signup', async (req, res) => {
     }
 })
 
-router.get('/profile', async (req, res) => {
+router.get('/profile', async (req, res, next) => {
     try {
-    const { first_name,last_name,age,email} = req.session.user
-     res.render ('profile', {
-        user: {
-            first_name,
-            last_name,
-            age,
-            email,
-        },
-        style:'style.css'})   
+        if (req.session.user) return next ()
+        res.redirect('login')
     } catch (error) {
         console.error ('Error:', error.message)
         res.status(500).json({ error: 'Internal Server Error' })
-    }
-})
+    }},async (req, res) => {
+    try {
+        const { user } = req.session
+        res.render ('profile', { user , style:'style.css'})   
+    } catch (error) {
+        console.error ('Error:', error.message)
+        res.status(500).json({ error: 'Internal Server Error' })
+    }})
 
 
 module.exports = router

@@ -19,6 +19,7 @@ function submitForm() {
     .then(response => response.json())
     .then(formData => {
         console.log(formData)
+        window.location.href = '/login'
     })
     .catch(error => console.error('Error:', error))
 }

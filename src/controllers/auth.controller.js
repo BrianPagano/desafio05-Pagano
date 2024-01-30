@@ -21,6 +21,7 @@ router.post ('/', async (req, res) => {
             last_name: user.last_name,
             email: lowercaseEmail,
             age: user.age,
+            role: user.role,
         }
         res.json ({status: 'success', message: 'Login Succesfull'})
      } catch (error) {
@@ -29,5 +30,19 @@ router.post ('/', async (req, res) => {
     }
 })
 
+router.get('/logout', async (req, res) => {
+    try {
+        req.session.destroy(err => {
+            if (err) {
+                return res.status(500).json({ error: 'Internal Server Error' });
+            } else {
+                return res.status(200).json({ message: 'Logout successful' });
+            }
+        });
+    } catch (error) {
+        console.error ('Error:', error.message)
+        res.status(500).json({ error: error })
+    }
+})
 
 module.exports = router
