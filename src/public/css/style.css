@@ -75,6 +75,58 @@
       grid-template-columns: repeat(5, 1fr);
     }}
 
+  /*Estilo para Navbar*/
+
+    nav {
+        background: linear-gradient(#641E1E, #330606);
+        padding: 30px;
+    }
+
+    .carrito {
+        text-decoration: none;
+    }
+
+    /*Tamaño logo*/
+    .logo {
+        height: 8vw; 
+        max-height: 60px;
+        border-radius: 10px;
+        }
+          
+    
+     @media screen and (min-width: 1024px) {
+        .animacion-menu:hover {
+            transform: scale(1.2);
+            transition: transform .3s; } 
+        
+        .logo {
+            height: 70px; 
+            border-radius: 20px;
+            }
+    } 
+
+  /*Estilo para el carrito del navbar*/
+
+.contenedorCarrito {
+    margin-top: 18px;
+}
+
+.carrito {
+    height: 25px;
+}
+
+.contadorCarrito {
+    color: white;
+    margin-top: 20px;
+}
+
+@media screen and (min-width: 992px) {
+    .contenedorCarrito {
+        margin-top: 0px;
+    }
+}
+
+
 
   /*Estilos para addProducts*/
 
@@ -572,7 +624,7 @@ margin: 50px 100px 0px 100px;
 
 .cardProfile {
   width: 300px;
-  height: 330px;
+  height: 360px;
   border-radius: 2em;
   padding: 10px;
   background-color: #191919;

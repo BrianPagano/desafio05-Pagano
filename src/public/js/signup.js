@@ -16,11 +16,26 @@ function submitForm() {
         },
         body: JSON.stringify(formData),
     })
-    .then(response => response.json())
-    .then(formData => {
-        console.log(formData)
-        window.location.href = '/login'
+    .then(response => {
+        if (!response.ok) {
+            // Si la respuesta no es exitosa, lanzar un error
+            throw new Error('Error al registrar usuario');
+        }
+        return response.json();
     })
-    .catch(error => console.error('Error:', error))
+    .then(formData => {
+        // Si todo está bien, redirigir a la página de inicio de sesión
+        window.location.href = '/login';
+    })
+    .catch(error => {
+        // Capturar y manejar el error
+        console.error('Error:', error);
+        // Mostrar un mensaje de alerta al usuario
+        Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Error, el correo ya se encuentra registrado",
+          });
+    });
 }
 
